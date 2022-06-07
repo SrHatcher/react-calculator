@@ -5,7 +5,7 @@ type TButton = {
   width?: string;
   color?: string;
   backgroundColor?: string;
-  onClick: (valor?: string) => void;
+  onClick: (valor: string) => void;
 };
 
 export const Button = ({
@@ -15,9 +15,8 @@ export const Button = ({
   backgroundColor,
   onClick,
 }: TButton) => {
-
   const returnNumberValue = () => {
-    typeof +text === "number" ? onClick(text) : onClick();
+    onClick(text);
   };
 
   return (

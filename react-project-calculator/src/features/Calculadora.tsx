@@ -1,30 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../components/Button";
 import styles from "./calculadora.module.css";
 
 export const Calculadora = () => {
-  const [valor, setValor] = useState("");
-  const [resultado, setResultado] = useState(0);
+  const [{ accValor, valor }, setValores] = useState({
+    valor: 0,
+    accValor: 0,
+  });
+  const [valorMostrar, setValorMostrar] = useState(0);
+
+  const [operacion, setOperacion] = useState("");
 
   const onNumberPress = (num?: string) => {
-    setValor(valor + num);
-  };
-  
-  const suma = () => {
-    setValor("");
-    setResultado(+valor);
+    if (!num) return;
+    setValores((prevValue) => ({ ...prevValue, valor: +num }));
+    setValorMostrar(+num);
   };
 
-  const calcular = () => {
-    setResultado(resultado + Number(valor));
-    setValor("");
+  const suma = () => {
+    const suma = accValor + Number(valor);
+    setValores((prevValue) => ({ ...prevValue, accValor: suma }));
+    setValorMostrar(suma);
+  };
+
+  const multiplicar = () => {
+    const multiplicar = accValor * Number(valor);
+    setValores((prevValue) => ({ ...prevValue, accValor: multiplicar }));
+    setValorMostrar(multiplicar);
+  };
+
+  const onOperacionPress = (operacion: string) => {
+    setOperacion(operacion);
+    if (operacion === "+") suma();
+    if (operacion === "x") multiplicar();
   };
 
   return (
     <section className={styles.main_container}>
       <div className={styles.calcu_container}>
         <div className={styles.resultado_container}>
-          <p className={styles.resultado}>{valor || resultado}</p>
+          <p className={styles.resultado}>{valorMostrar}</p>
         </div>
         <div className={styles.teclado}>
           <Button onClick={onNumberPress} text="7" />
@@ -34,15 +49,21 @@ export const Calculadora = () => {
           <Button onClick={onNumberPress} text="4" />
           <Button onClick={onNumberPress} text="5" />
           <Button onClick={onNumberPress} text="6" />
-          <Button onClick={suma} text="+" />
+
+          <Button onClick={onOperacionPress} text="+" />
+
           <Button onClick={onNumberPress} text="1" />
           <Button onClick={onNumberPress} text="2" />
           <Button onClick={onNumberPress} text="3" />
-          <Button text="-" />
+
+          <Button onClick={onOperacionPress} text="-" />
+
           <Button text="." />
           <Button onClick={onNumberPress} text="0" />
-          <Button text="/" />
-          <Button text="x" />
+
+          <Button onClick={onOperacionPress} text="/" />
+          <Button onClick={onOperacionPress} text="x" />
+
           <Button
             text="Reset"
             width="46%"
@@ -52,7 +73,7 @@ export const Calculadora = () => {
           <Button
             text="="
             width="46%"
-            onClick={calcular}
+            onClick={() => onOperacionPress(operacion)}
             color="white"
             backgroundColor="#d13f30"
           />
