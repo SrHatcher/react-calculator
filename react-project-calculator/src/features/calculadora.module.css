@@ -39,10 +39,12 @@
   height: 75%;
   border-radius: 10px;
   background-color: #242d44;
+
   display: flex;
-  flex-wrap: wrap;
-  padding: 15px;
   justify-content: center;
-  align-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
+  padding: 10px;
+  box-sizing: content-box;
 }

@@ -1,11 +1,12 @@
-import styles from "./button.module.css";
+import { useState } from 'react';
+import styles from './button.module.css';
 
 type TButton = {
   text: string;
   width?: string;
   color?: string;
   backgroundColor?: string;
-  onClick: (valor: string) => void;
+  onClick?: (valor: string) => void;
 };
 
 export const Button = ({
@@ -16,14 +17,28 @@ export const Button = ({
   onClick,
 }: TButton) => {
   const returnNumberValue = () => {
-    onClick(text);
+    onClick?.(text);
   };
+
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  console.log(isMouseDown, text);
 
   return (
     <button
       className={styles.button}
       onClick={() => returnNumberValue()}
-      style={{ width, color, backgroundColor }}
+      onMouseDown={() => setIsMouseDown(true)}
+      onMouseUp={() => setIsMouseDown(false)}
+      style={{
+        width,
+        color,
+        backgroundColor,
+        borderBottom: isMouseDown
+          ? `2px solid ${backgroundColor || '#aba195'}`
+          : `5px solid ${backgroundColor || '#aba195'}`,
+        // borderBottomColor: isMouseDown ? backgroundColor : '#aba195',
+      }}
     >
       {text}
     </button>
