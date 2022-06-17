@@ -10,8 +10,13 @@ export const multiplicar = (accValor: number, valor: string) => {
   return multipliacion;
 };
 
-export const dividir = (accValor: number, valor: string) => {
-  const division = !accValor ? Number(valor) : (accValor || 1) / Number(valor);
+export const dividir = (accValor: number, valor: string): number => {
+  if (!Number(valor)) return 0;
+
+  const valorEsCero = !accValor;
+  const division = valorEsCero
+    ? Number(valor)
+    : (accValor || 1) / Number(valor);
   return division;
 };
 
