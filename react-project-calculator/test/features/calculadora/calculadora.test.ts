@@ -1,4 +1,9 @@
-import { dividir, multiplicar, restar, suma } from './calculadora.util';
+import {
+  dividir,
+  multiplicar,
+  restar,
+  suma,
+} from '../../../src/features/Calculadora/calculadora.util';
 
 describe('Operaciones aritméticas', () => {
   it('Debería sumar 2 numeros y devolver un número', () => {
