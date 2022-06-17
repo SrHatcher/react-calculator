@@ -1,4 +1,4 @@
-import { dividir, multiplicar, restar, suma } from './Calculadora';
+import { dividir, multiplicar, restar, suma } from './calculadora.util';
 
 // validate the sum fuction sum two numbers
 describe('sum', () => {

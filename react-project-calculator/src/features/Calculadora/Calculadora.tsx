@@ -31,14 +31,17 @@ export const Calculadora = () => {
     setValorMostrar(concatNumber);
   };
 
-  const onOperacionPress = (operacion: string) => {
-    const selectedOperation = prevOperacion === '' ? operacion : prevOperacion;
+  const onOperacionPress = (operacionSeleccionada: string) => {
+    const noExisteOperacionPrevia = prevOperacion === '';
+    const selectedOperation = noExisteOperacionPrevia
+      ? operacionSeleccionada
+      : prevOperacion;
 
     const opFuntion = operation[selectedOperation];
 
     setAcumulador(opFuntion(accValor, valor));
 
-    setOperacion(operacion);
+    setOperacion(operacionSeleccionada);
   };
 
   return (
