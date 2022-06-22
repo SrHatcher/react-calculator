@@ -1,10 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Calculadora } from './features/Calculadora'
-import './global/global.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./global/global.css";
+import { Router } from "./router/Router";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Calculadora />
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </React.StrictMode>
-)
+);
