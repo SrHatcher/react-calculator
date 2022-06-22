@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 import styles from './calculadora.module.css';
+import { operation } from './calculadora.util';
 
 export const Calculadora = () => {
   const [{ accValor, valor }, setValores] = useState({
@@ -30,36 +31,17 @@ export const Calculadora = () => {
     setValorMostrar(concatNumber);
   };
 
-  const suma = () => {
-    const suma = accValor + Number(valor);
-    setAcumulador(suma);
-  };
+  const onOperacionPress = (operacionSeleccionada: string) => {
+    const noExisteOperacionPrevia = prevOperacion === '';
+    const selectedOperation = noExisteOperacionPrevia
+      ? operacionSeleccionada
+      : prevOperacion;
 
-  const multiplicar = () => {
-    const multipliacion = (accValor || 1) * Number(valor);
-    setAcumulador(multipliacion);
-  };
+    const opFuntion = operation[selectedOperation];
 
-  const dividir = () => {
-    const division = !accValor
-      ? Number(valor)
-      : (accValor || 1) / Number(valor);
+    setAcumulador(opFuntion(accValor, valor));
 
-    setAcumulador(division);
-  };
-
-  const restar = () => {
-    const resta = accValor - Number(valor);
-    setAcumulador(resta);
-  };
-
-  const onOperacionPress = (operacion: string) => {
-    const op = prevOperacion === '' ? operacion : prevOperacion;
-    if (op === '+') suma();
-    if (op === 'x') multiplicar();
-    if (op === '/') dividir();
-    if (op === '-') restar();
-    setOperacion(operacion);
+    setOperacion(operacionSeleccionada);
   };
 
   return (
