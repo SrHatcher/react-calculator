@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Button/Button';
 import styles from './calculadora.module.css';
 import { operation } from './calculadora.util';
 
