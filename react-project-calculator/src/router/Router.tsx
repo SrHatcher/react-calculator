@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const Router = () => {
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <nav>
         <ul>
           <li>
@@ -20,6 +20,6 @@ export const Router = () => {
         <Route path="/" element={<Calculadora />} />
         <Route path="consejos" element={<Advices />} />
       </Routes>
-    </>
+    </div>
   );
 };
