@@ -22,8 +22,6 @@ export const Button = ({
 
   const [isMouseDown, setIsMouseDown] = useState(false);
 
-  console.log(isMouseDown, text);
-
   return (
     <button
       className={styles.button}
@@ -37,7 +35,8 @@ export const Button = ({
         borderBottom: isMouseDown
           ? `2px solid ${backgroundColor || '#aba195'}`
           : `5px solid ${backgroundColor || '#aba195'}`,
-        // borderBottomColor: isMouseDown ? backgroundColor : '#aba195',
+        borderBottomColor:
+          isMouseDown && backgroundColor ? '#aba195' : '#aba195',
       }}
     >
       {text}
