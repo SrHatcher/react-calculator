@@ -47,8 +47,6 @@
   color: white;
 }
 
- 
-
 .separador {
   height: 25%;
   width: 80%;
@@ -68,6 +66,20 @@
   height: 2px;
   background-color: rgb(55, 61, 75);
   width: 100%;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.isLoading {
+  animation: loading 1s backwards;
 }
 
 .boton {
